@@ -3,6 +3,7 @@ const cors = require("cors")
 const mysql = require("mysql")
 
 const app = express();
+app.use(express.json());
 
 app.use(cors())
 
@@ -20,6 +21,19 @@ app.get("/",(req,res)=>{
         return res.json(data);
     })
 })
+
+app.post("/create",(req,res)=>{
+    const sql ="INSERT INTO student(`name`,`email`) VALUES (?)";
+    const values =[
+        req.body.name,
+        req.body.email
+    ]
+    db.query(sql,[values],(err,data)=>{
+        if(err) return res.json("Error");
+        return res.json(data);
+    })
+})
+
 
 app.listen(8081, () =>{
     console.log("Server is running on port 8081");
