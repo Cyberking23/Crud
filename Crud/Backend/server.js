@@ -35,6 +35,32 @@ app.post("/create",(req,res)=>{
 })
 
 
+app.put("/update/:id", (req, res) => {
+    const sql = "UPDATE student SET name = ?, email = ? WHERE id =? "
+
+    const values = [
+        req.body.name,
+        req.body.email
+    ];
+    const id = req.params.id;
+
+    db.query(sql, [...values, id], (err, data) => {
+        if (err) return res.json("Error");
+        return res.json(data);
+    });
+});
+
+app.delete("/student/:id", (req, res) => {
+    const sql = "DELETE FROM student WHERE id = ? "
+    const id = req.params.id;
+
+    db.query(sql, [id], (err, data) => {
+        if (err) return res.json("Error");
+        return res.json(data);
+    });
+});
+
+
 app.listen(8081, () =>{
     console.log("Server is running on port 8081");
 })

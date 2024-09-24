@@ -6,8 +6,8 @@ export default function CreateStudent() {
     const [email,setEmail]=useState('')
     const navigate = useNavigate('');
 
-    function handleSubmit(e){
-        e.preventDefaul();
+    function handleSubmit(event){
+        event.preventDefault();
         axios.post('http://localhost:8081/create',{name,email})
         .then(res=>{
             console.log(res);
@@ -21,11 +21,11 @@ export default function CreateStudent() {
             <form onSubmit={handleSubmit}>
                 <div className="mb-2">
                     <label htmlFor="">Name</label>
-                    <input type="text" placeholder="Enter Name" className="form-control" onChange={e=> setName(e.target.value)} />
+                    <input type="text" placeholder="Enter Name" className="form-control" onChange={e=> setName(e.target.value)} required />
                 </div>
                 <div className="mb-2">
                     <label htmlFor="">Email</label>
-                    <input type="text" placeholder="Enter Name" className="form-control" onChange={e=> setEmail(e.target.value)} />
+                    <input type="text" placeholder="Enter Name" className="form-control" onChange={e=> setEmail(e.target.value)}  />
                 </div>
                 <button className="btn btn-success">Submit</button>
 

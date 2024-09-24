@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Student from './Student'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import CreateStudent from './CreateStudent';
+import UpdateStudent from './UpdateStudent';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<Student/>}></Route>
           <Route path='/create' element={<CreateStudent/>}></Route>
+          <Route path='/update/:id' element={<UpdateStudent/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

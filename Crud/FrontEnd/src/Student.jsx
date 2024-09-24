@@ -10,6 +10,16 @@ export default function Student() {
         .then(res => setStudent(res.data))
         .catch(err => console.error(err))
     },[])
+
+        const handleDelete  = async (id)=>{
+            try{
+                await axios.delete('http://localhost:8081/student/'+id)
+                window.location.reload()
+            }catch(err){
+                console.log(err)
+            }
+        }
+
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
         <div className="w-50 bg-white rounded p-3">
@@ -28,8 +38,8 @@ export default function Student() {
                                 <td>{item.name}</td>
                                 <td>{item.email}</td>
                                 <td>
-                                    <button className="btn btn-primary">Update</button>
-                                    <button className="btn btn-danger">Delete</button>
+                                    <Link to={`update/${item.id}`} className="btn btn-primary">Update</Link>
+                                    <button className="btn btn-danger" onClick= {e => handleDelete(item.id)}>Delete</button>
                                 </td>
                             </tr>
                             
